@@ -1,5 +1,5 @@
 package com.martin.risk.engine;
 
 public enum RuleNr {
-    R1, R2 , R3 , R4
+    R1_AMOUNT_SPIKE, R2_NEW_RECIPIENT, R3_MULTI_COUNTRY, R4_NIGHT_LARGE
 }
