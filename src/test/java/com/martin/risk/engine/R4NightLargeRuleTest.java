@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class R4NightLargeRuleTest {
 
     private  final R4NightLargeRule rule = new R4NightLargeRule();
-    private final  ClientContext ctx = new ClientContext(BigDecimal.ZERO, BigDecimal.ZERO , Set.of(), Set.of());
+    private final  ClientContext ctx = new ClientContext(BigDecimal.ZERO, 0 , Set.of(), Set.of());
 
     @Test
     void triggersAtLastMinuteBeforeFive(){
