@@ -4,9 +4,11 @@ import com.martin.risk.engine.ClientContext;
 import com.martin.risk.engine.Payment;
 import com.martin.risk.engine.RiskRule;
 import com.martin.risk.engine.RuleNr;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Component
 public class R4NightLargeRule implements RiskRule {
 
     private static final BigDecimal MIN_AMOUNT = new BigDecimal("500");
