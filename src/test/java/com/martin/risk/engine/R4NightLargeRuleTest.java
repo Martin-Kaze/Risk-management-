@@ -36,7 +36,7 @@ public class R4NightLargeRuleTest {
         assertFalse(rule.matches(p,ctx));
     }
     @Test
-    void doesNotTriggerPastFiveOClockBigAmmount(){
+    void doesNotTriggerPastFiveOClockBigAmount(){
         Payment p = new Payment( "C_ID", new BigDecimal("99999"), "R_ID", "LT",
                 LocalDateTime.of(2026,11,10,5,1));
 
