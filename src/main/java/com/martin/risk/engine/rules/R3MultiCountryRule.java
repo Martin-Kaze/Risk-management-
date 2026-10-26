@@ -16,7 +16,7 @@ public class R3MultiCountryRule implements RiskRule {
 
     @Override
     public boolean matches(Payment payment, ClientContext ctx) {
-        int size =  ctx.countriesLast10Min().contains(payment.country())  ? 3 : 2;
+        int size =  ctx.countriesLast10Min().contains(payment.countryOrigin())  ? 3 : 2;
         return   ctx.countriesLast10Min().size() >= size;
 
     }
