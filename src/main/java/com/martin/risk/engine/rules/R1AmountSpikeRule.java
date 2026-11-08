@@ -4,9 +4,11 @@ import com.martin.risk.engine.ClientContext;
 import com.martin.risk.engine.Payment;
 import com.martin.risk.engine.RiskRule;
 import com.martin.risk.engine.RuleNr;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Component
 public class R1AmountSpikeRule implements RiskRule {
     private static final int MIN_PAYMENTS = 5;
     private static final BigDecimal SPIKE_FACTOR = new BigDecimal("5");
