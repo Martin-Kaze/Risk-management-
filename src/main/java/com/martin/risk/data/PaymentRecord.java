@@ -1,6 +1,8 @@
 package com.martin.risk.data;
 
 import com.martin.risk.engine.Decision;
+import com.martin.risk.engine.Payment;
+import com.martin.risk.engine.RiskResult;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -11,23 +13,31 @@ public class PaymentRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     private String organizationId;
     private String clientId;
     private String recipientId;
-    private String  country;
+    private String country;
     private BigDecimal amountEur;
     private LocalDateTime timestamp;
-    int score;
+    private int score;
 
     @Enumerated(EnumType.STRING)
-    Decision decision;
+    private Decision decision;
 
-    protected PaymentRecord(){};
+    protected PaymentRecord() {
+    }
 
-    public void setId(Long id) {
-        this.id = id;
+    public PaymentRecord(String organizationId, Payment payment, RiskResult result) {
+        this.organizationId = organizationId;
+        this.clientId = payment.clientId();
+        this.recipientId = payment.recipientId();
+        this.country = payment.countryOrigin();
+        this.amountEur = payment.amountEur();
+        this.timestamp = payment.timestamp();
+        this.score = result.score();
+        this.decision = result.decision();
     }
 
     public Long getId() {
@@ -38,63 +48,31 @@ public class PaymentRecord {
         return organizationId;
     }
 
-    public void setOrganizationId(String organizationId) {
-        this.organizationId = organizationId;
-    }
-
     public String getClientId() {
         return clientId;
-    }
-
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
     }
 
     public String getRecipientId() {
         return recipientId;
     }
 
-    public void setRecipientId(String recipientId) {
-        this.recipientId = recipientId;
-    }
-
     public String getCountry() {
         return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 
     public BigDecimal getAmountEur() {
         return amountEur;
     }
 
-    public void setAmountEur(BigDecimal amountEur) {
-        this.amountEur = amountEur;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public Decision getDecision() {
         return decision;
-    }
-
-    public void setDecision(Decision decision) {
-        this.decision = decision;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
     }
 }
