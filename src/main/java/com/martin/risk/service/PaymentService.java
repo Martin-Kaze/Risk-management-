@@ -2,6 +2,7 @@ package com.martin.risk.service;
 
 import com.martin.risk.api.PaymentRequest;
 import com.martin.risk.api.PaymentResponse;
+import com.martin.risk.api.PaymentView;
 import com.martin.risk.data.Organization;
 import com.martin.risk.data.OrganizationRepository;
 import com.martin.risk.data.PaymentRecord;
@@ -39,6 +40,13 @@ public class PaymentService {
 
         return new PaymentResponse(saved.getId(), result.decision(), result.score(), result.triggeredRules());
 
+    }
+
+    public PaymentView get(String apiKey, Long id) {
+        Organization org = authenticate(apiKey);
+        return payments.findByIdAndOrganizationId(id, org.getId())
+                .map(PaymentView::from)
+                .orElseThrow(NotFoundException::new);
     }
 
 
